@@ -10,26 +10,22 @@ const getCharacters = (req, res)=>{
     
 };
 // Definimos la función postTeams
-const postCharacter = async (req, res)=>{
-    const {fullName, species, age, gender, status, image, occupation} = req.body;
-    const character = Character.find().where({fullName})
-    if (character.length === 0){
-
-        const newCharacter = new Character({
-            fullName, species, age, gender, status, image, occupation
-        })
-        newCharacter.save((error)=>{
-            if (error){
-                console.log(error);
-            }else {
-                res.status(200).json(newCharacter)
-            }
-        })
+const postCharacter = (req, res)=>{
+   const newCharacter = new Character(req.body)
+   newCharacter.save((error)=>{
+    if (error){
+        res.status(400).json({message: error.message})
+    }else{
+        res.status(200).json(newCharacter)
     }
-}
+   });
+   console.log(newCharacter)
+ 
+};
+    
 // Definimos la función deleteTeams
 const deleteCharacterById = (req, res)=>{
     res.send(`Borramos el personaje con el id proveniente de la request ${req.params.id}`)
 }
 
-export {getCharacters, postCharacter, deleteCharacterById}
+export { getCharacters, postCharacter, deleteCharacterById }

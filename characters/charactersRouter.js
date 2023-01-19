@@ -1,5 +1,5 @@
 import express from "express";
-import {getCharacters, postCharacter, deleteCharacterById} from "./charactersController.js"
+import { getCharacters, postCharacter, deleteCharacterById } from "./charactersController.js"
 const charactersRouter = express.Router();
 
 charactersRouter.get("/", getCharacters);

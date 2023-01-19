@@ -11,6 +11,14 @@ const characterSchema = new Schema({
 },
 { timestamps: true }
 )
+
+characterSchema.set("toJSON" ,{
+    transform(doc, ret){
+        ret.id = ret._id
+        delete ret._id
+        delete ret.__v
+        
+    }})
 const Character = model("Character", characterSchema);
 
 export default Character
