@@ -1,8 +1,14 @@
 import express from "express";
+import { getLoginForm, sendLoginForm, getRegisterForm, sendRegisterForm } from "./usersController.js";
+
 const usersRouter = express.Router();
 
-usersRouter.get("/", (req, res)=>{
-    res.render("users")
-} )
+usersRouter.get("/", getLoginForm);
+usersRouter.post("/", sendLoginForm);
 
-export default usersRouter
+const registerRouter = express.Router();
+
+registerRouter.get("/", getRegisterForm);
+registerRouter.post("/", sendRegisterForm);
+
+export { usersRouter, registerRouter }

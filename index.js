@@ -2,7 +2,8 @@ import "./config/mongo.js"
 import express from "express";
 import hbs from "express-handlebars";
 import charactersRouter from "./characters/charactersRouter.js";
-import usersRouter from "./users/usersRouter.js"
+import charactersUserRouter from "./characters/charactersUserRouter.js"
+import { usersRouter } from "./users/usersRouter.js"
 import path from "path";
 import {fileURLToPath} from "url";
 
@@ -22,8 +23,10 @@ server.get("/", function(req, res){
     res.render("home")
 })
 
-server.use("/user", usersRouter)
-server.use("/api/characters", charactersRouter);
+server.use("/loginForm", usersRouter)
+server.use("/registerForm", usersRouter)
+server.use("/api/characters", charactersRouter)
+server.use("/user/api/characters", charactersUserRouter);
 
 
 
