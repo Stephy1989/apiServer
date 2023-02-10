@@ -1,32 +1,24 @@
 import "./config/mongo.js"
 import express from "express";
-import hbs from "express-handlebars";
 import charactersRouter from "./characters/charactersRouter.js";
-import charactersUserRouter from "./characters/charactersUserRouter.js"
-import { usersRouter } from "./users/usersRouter.js"
 import path from "path";
 import {fileURLToPath} from "url";
+import cors from "cors";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const server = express();
-const PORT = 3030;
+const PORT = process.env.PORT || 3030;
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 server.use(express.static(path.join(__dirname, "/public")));
-server.engine(".hbs", hbs.engine({extname: "hbs"}));
-server.set("view engine", "hbs");
-server.set("views", path.join(__dirname, "/views"));
+server.use(cors());
 
-server.get("/", function(req, res){
-    res.render("home")
-})
 
-server.use("/loginForm", usersRouter)
-server.use("/registerForm", usersRouter)
 server.use("/api/characters", charactersRouter)
-server.use("/user/api/characters", charactersUserRouter);
+
 
 
 

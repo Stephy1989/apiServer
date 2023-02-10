@@ -1,9 +1,11 @@
 import express from "express";
-import { getCharacters } from "./charactersController.js"
+import { getCharacters, postCharacter, deleteCharacterById, changeCharacter } from "./charactersController.js"
 const charactersRouter = express.Router();
 
 charactersRouter.get("/", getCharacters);
-
+charactersRouter.post("/", postCharacter);
+charactersRouter.delete("/:id", deleteCharacterById);
+charactersRouter.patch("/:id", changeCharacter)
 
 
 
