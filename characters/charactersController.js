@@ -8,8 +8,23 @@ const getCharacters = (req, res)=>{
     }).catch((error)=> console.log(error))
     
 };
+
+const getCharactersByName = (req, res, next)=>{
+    const {query} = req.params;
+   
+    Character.find({$text: {$search: query}}, (err, result)=>{
+        if(err){
+            return res.json(err.message)
+        }else {
+            return res.status(200).json({result})
+        };
+    });
+
+};
+
+
 // Definimos la función postCharacters, que registra un personaje en la base de datos.
-const postCharacter = (req, res)=>{
+const postCharacter = (req, res, authData)=>{
    const newCharacter = new Character(req.body)
    newCharacter.save((error)=>{
     if (error){
@@ -22,7 +37,7 @@ const postCharacter = (req, res)=>{
 };
     
 // Definimos la función deleteCharacter, que borra el personaje con el id de la req.
-const deleteCharacterById = async (req, res)=>{
+const deleteCharacterById = async (req, res, authData)=>{
     try{
         const character = await Character.findByIdAndDelete(req.params.id);
         res.status(200).json({character: character.id, message: "El personaje ha sido eliminado"})
@@ -34,7 +49,7 @@ const deleteCharacterById = async (req, res)=>{
 }
 
 //Definimos la función changeCharacter con el id de la req para hacer cambios en el personaje.
-const changeCharacter = async(req, res)=>{
+const changeCharacter = async(req, res, authData)=>{
     try{
         const character = await Character.findByIdAndUpdate(req.params.id, req.body, {new:true})
         res.status(200).json({message: "El personaje ha sido modificado", personaje: character})
@@ -45,4 +60,4 @@ const changeCharacter = async(req, res)=>{
     }
 }
 
-export { getCharacters, postCharacter, deleteCharacterById, changeCharacter }
+export { getCharacters, getCharactersByName, postCharacter, deleteCharacterById, changeCharacter }

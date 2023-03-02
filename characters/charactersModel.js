@@ -1,6 +1,6 @@
 import {Schema, model} from "mongoose"
 
-const characterSchema = new Schema({
+const CharacterSchema = new Schema({
     fullName: {type: String, required: true, unique: true},
     species: {type: String, required: true},
     age: {type: Number, required: true},
@@ -10,15 +10,17 @@ const characterSchema = new Schema({
     occupation: {type: String, required: true}
 },
 { timestamps: true }
-)
+);
 
-characterSchema.set("toJSON" ,{
+CharacterSchema.index({fullName: "text"})
+
+CharacterSchema.set("toJSON" ,{
     transform(doc, ret){
         ret.id = ret._id
         delete ret._id
         delete ret.__v
         
     }})
-const Character = model("Character", characterSchema);
+const Character = model("Character", CharacterSchema);
 
 export default Character
