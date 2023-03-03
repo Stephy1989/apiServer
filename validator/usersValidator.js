@@ -23,7 +23,16 @@ const validationRulesUser = [
             throw new Error("Las contraseñas deben coincidir")
         }
         return true;
-    })
+    }),
+    (req, res, next)=>{
+        const error = validationResult(req);
+        if(!error.isEmpty()){
+            return res.status(400).json(error)
+        }else{
+           return next()
+        }
+    }
 
 
 ]
+export default validationRulesUser
