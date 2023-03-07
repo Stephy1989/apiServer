@@ -23,13 +23,18 @@ const validationRulesCharacter = [
     .notEmpty().withMessage("Ingrese el status del personaje")
     .isLength({min: 2, max: 60}).withMessage("Mínimo 2 y máximo 60 caracteres")
     .isAlpha("es-ES").withMessage("Solo caracteres alfabéticos"),
-    body("fullName")
-    .notEmpty().withMessage("Ingrese el nombre del personaje")
-    .isLength({min: 2, max: 60}).withMessage("Mínimo 2 y máximo 60 caracteres")
-    .isAlpha("es-ES", {ignore: " "}).withMessage("Solo caracteres alfabéticos"),
+    body("occupation")
+    .notEmpty().withMessage("Ingrese la ocupación del personaje")
+    .isLength({min: 2, max: 60}).withMessage("Mínimo 2 y máximo 60 caracteres"),
 
-
-
-
+    (req, res, next)=>{
+        const error = validationResult(req);
+        if(!error.isEmpty()){
+            return res.status(400).json(error)
+        }else{
+           return next()
+        }
+    }
 
 ]
+export default validationRulesCharacter

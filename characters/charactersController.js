@@ -1,5 +1,7 @@
 import Character from "./charactersModel.js"
 
+const imageCharacter_url = process.env.imageCharacter_url
+
 
 // Definimos la función getCharacters, que trae los personajes de la data.
 const getCharacters = (req, res)=>{
@@ -25,7 +27,11 @@ const getCharactersByName = (req, res, next)=>{
 
 // Definimos la función postCharacters, que registra un personaje en la base de datos.
 const postCharacter = (req, res, authData)=>{
-   const newCharacter = new Character(req.body)
+    let characterImage = ""
+    if(req.file){
+        characterImage = `${imageCharacter_url}${req.file.filename}`
+    }
+   const newCharacter = new Character({...req.body, image: characterImage})
    newCharacter.save((error)=>{
     if (error){
         res.status(400).json({message: error.message})
