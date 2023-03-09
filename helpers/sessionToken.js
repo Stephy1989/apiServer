@@ -4,13 +4,13 @@ import * as dotenv from "dotenv";
 dotenv.config();
 const key = process.env.tokenKey
 
-const createToken = (req, res) =>{ 
-   
+const createToken = (req, time) =>{ 
+    
     const sign = jwt.sign(
     {user: req.usr},
     key,
-    {expiresIn: "4h"})
-     return({sign});
+    {expiresIn: time})
+     return(sign);
     }
     
         

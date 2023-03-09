@@ -1,0 +1,28 @@
+<section>
+<div>
+    <h3>Password Recovery</h3>
+    <div>
+        <form action="/api/user/recovery-password/{{token}}" method="post">
+        <input type="text" value="{{tokenStatus.name}}" hidden/>
+        <input type="password" placeholder="Escriba una nueva contraseña" name="password"
+        autofocus/>
+        {{#errBelowInput arrWarnings "password"}}
+        {{msg}}
+        {{/errBelowInput}}
+        <div id="passwordHelpBlock">
+            Ingrese una nueva contraseña de al menos 7 caracteres.
+        </div>
+        <input type="password" placeholder="Escriba una nueva contraseña" name="passwordConfirmation"/>
+        {{#errBelowInput arrWarnings "passwordConfirmation"}}
+        {{msg}}
+        {{/errBelowInput}}
+        <div id="passwordHelpBlock">
+            Repita su nueva contraseña.
+        </div>
+        <input type="submit" value="Confirmar cambio de contraseña">
+        
+        </form>
+    </div>
+</div>
+
+</section>

@@ -15,7 +15,7 @@ async function loginUser (req, res, next){
                 lastName: user[0].lastName,
                 email: user[0].email
             }
-            const accesToken = createToken(usr);
+            const accesToken = createToken(usr, "4h");
             res.status(200).json({token: accesToken, userData: usr})
             
             
