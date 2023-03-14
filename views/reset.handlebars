@@ -1,5 +1,5 @@
-<section>
-<div>
+<section class="mt-5 container">
+<div class="row justify-content-center">
     <h3>Password Recovery</h3>
     <div>
         <form action="/api/user/recovery-password/{{token}}" method="post">
@@ -12,7 +12,7 @@
         <div id="passwordHelpBlock">
             Ingrese una nueva contraseña de al menos 7 caracteres.
         </div>
-        <input type="password" placeholder="Escriba una nueva contraseña" name="passwordConfirmation"/>
+        <input type="password" placeholder="Repita su nueva contraseña" name="passwordConfirmation"/>
         {{#errBelowInput arrWarnings "passwordConfirmation"}}
         {{msg}}
         {{/errBelowInput}}

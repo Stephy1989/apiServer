@@ -1,6 +1,6 @@
 import express from "express";
 import { loginUser, registerUser, deleteUser, changeUser } from "./usersController.js";
-import validationRulesUser from "../validator/usersValidator.js";
+import { validationRulesUser } from "../validator/usersValidator.js";
 const usersRouter = express.Router();
 
 

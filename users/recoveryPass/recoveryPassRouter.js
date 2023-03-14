@@ -1,16 +1,17 @@
 import express from "express";
-import { mailRecoveryPass, resetPassword, resetPasswordForm } from "./recoveryPassController.js"
+import { mailRecoveryPass, mailRecoveryPassForm, resetPassword, resetPasswordForm } from "./recoveryPassController.js";
+import { validationRulesPassword } from "../../validator/usersValidator.js";
 
 const recoveryPassRouter = express.Router();
 
-recoveryPassRouter.get("/");
+recoveryPassRouter.get("/", mailRecoveryPassForm);
 recoveryPassRouter.post("/", mailRecoveryPass);
 recoveryPassRouter.put("/");
 
 const resetPasswordRouter = express.Router();
 
-resetPasswordRouter.get("/", resetPasswordForm);
-resetPasswordRouter.post("/", resetPassword);
+resetPasswordRouter.get("/:token", resetPasswordForm);
+resetPasswordRouter.post("/:token", validationRulesPassword, resetPassword);
 
 
 export { recoveryPassRouter, resetPasswordRouter }

@@ -30,10 +30,10 @@ server.use(cors());
 const hbs = ehbs.create({
     defaultLayout: "main",
     layoutsDir: path.join(__dirname, "views/layouts"),
-    extname: "hbs",
     partialsDir: path.join(__dirname, "views/partials"),
     helpers: {
-        errBelowInput: function(arrWarnings, inputName){
+        errBelowInput: function (arrWarnings, inputName){
+            if (!arrWarnings) return null;
             const warning = arrWarnings.find((el)=> el.param === inputName)
             if (warning === undefined){
                 return null
@@ -52,7 +52,7 @@ server.use("/api/characters", charactersRouter)
 server.use("/api/character/user", characterUserRouter)
 server.use("/api/user", usersRouter)
 server.use("/api/user/forgot-password", recoveryPassRouter)
-server.use("/api/user/recovery-password/:token", resetPasswordRouter)
+server.use("/api/user/recovery-password", resetPasswordRouter)
 
 
 
