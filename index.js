@@ -21,6 +21,14 @@ const PORT = process.env.PORT || 3030;
 
 
 server.use(express.static("public"))
+server.use(
+    "/css",
+    express.static(path.join(__dirname, "node_modules/bootstrap/dist/css"))
+  );
+  server.use(
+    "/js",
+    express.static(path.join(__dirname, "node_modules/bootstrap/dist/js"))
+  );
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 server.use(cors());
@@ -38,7 +46,9 @@ const hbs = ehbs.create({
             }else{
                 return `
                 <div class="warning-message"> 
+                <p class="warning-text">
                 ${warning.msg}
+                </p>
                 </div>
                 `
             }

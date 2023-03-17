@@ -58,7 +58,6 @@ const resetPassword = async (req, res, next)=>{
     const tokenStatus = await verifyToken(token);
     if(tokenStatus instanceof Error) return console.log(tokenStatus);
    const newPass = await encrypt(req.body.password);
-   console.log(tokenStatus.user.id)
     try{
         const updatedUser = await User.findByIdAndUpdate(tokenStatus.user.id, {password: newPass});
         res.status(200).json({message: `La contraseña del usuario con id ${tokenStatus.user.id} ha sido actualizada`})

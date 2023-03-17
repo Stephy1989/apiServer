@@ -39,12 +39,12 @@ const validationRulesUser = [
 const validationRulesPassword = [
 
     body("password")
-    .notEmpty().withMessage("Debe ingresar su contraseña")
-    .isLength({min: 7}).withMessage("Su contraseña debe contener al menos 7 caracteres"),
+    .notEmpty().withMessage("* Debe ingresar su contraseña")
+    .isLength({min: 7}).withMessage("* Su contraseña debe contener al menos 7 caracteres"),
     body("passwordConfirmation")
     .custom((value, { req })=>{
         if (value !== req.body.password){
-            throw new Error("Las contraseñas deben coincidir")
+            throw new Error("* Las contraseñas deben coincidir")
         }
         return true;
     }),

@@ -12,7 +12,7 @@ const storage =  multer.diskStorage({
     },
     filename: (req, file, callback)=>{
         const ext = file.originalname.split(".").pop();
-        const filename = `usrPic_${Date.now()}.${ext}`;
+        const filename = `charPic_${Date.now()}.${ext}`;
         callback(null, filename);
     }
 });

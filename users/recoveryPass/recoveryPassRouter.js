@@ -6,7 +6,7 @@ const recoveryPassRouter = express.Router();
 
 recoveryPassRouter.get("/", mailRecoveryPassForm);
 recoveryPassRouter.post("/", mailRecoveryPass);
-recoveryPassRouter.put("/");
+
 
 const resetPasswordRouter = express.Router();
 

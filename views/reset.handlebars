@@ -4,13 +4,18 @@
     <div class="form-container">
         <form class="form-group" action="/api/user/recovery-password/{{token}}" method="post">
         <input type="text" value="{{tokenStatus.name}}" hidden/>
-        <input class="input-form" type="password" placeholder="Escriba una nueva contraseña" name="password"
+        <div class="form-floating">
+        <input class="form-control"  id="floatingInput" type="password" placeholder="Escriba una nueva contraseña" name="password"
         autofocus/>
+        <label for="floatingInput">Contraseña</label>
+        </div>
         {{#errBelowInput arrWarnings "password"}}
         {{msg}}
         {{/errBelowInput}}
-        
-        <input class="input-form" type="password" placeholder="Repita su nueva contraseña" name="passwordConfirmation"/>
+        <div class="form-floating">
+        <input class="form-control" id="floatingPassword" type="password" placeholder="Repita su nueva contraseña" name="passwordConfirmation"/>
+        <label for="floatingPassword">Repita su nueva contraseña</label>
+        </div>
         {{#errBelowInput arrWarnings "passwordConfirmation"}}
         {{msg}}
         {{/errBelowInput}}
