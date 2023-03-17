@@ -19,8 +19,6 @@ const __dirname = path.dirname(__filename);
 const server = express();
 const PORT = process.env.PORT || 3030;
 
-server.use("/css", express.static(path.join(__dirname, "node_modules/bootstrap/dist/css")));
-server.use("/js", express.static(path.join(__dirname, "node_modules/bootstrap/dist/js")))
 
 server.use(express.static("public"))
 server.use(express.json());
@@ -38,7 +36,11 @@ const hbs = ehbs.create({
             if (warning === undefined){
                 return null
             }else{
-                return warning.msg
+                return `
+                <div class="warning-message"> 
+                ${warning.msg}
+                </div>
+                `
             }
         }
     }

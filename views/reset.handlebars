@@ -1,25 +1,23 @@
-<section class="container">
-<div class="row justify-content-center">
-    <h3>Password Recovery</h3>
-    <div>
-        <form action="/api/user/recovery-password/{{token}}" method="post">
+<section>
+<div class="container">
+    <h3 class="subtitle">Password Recovery</h3>
+    <div class="form-container">
+        <form class="form-group" action="/api/user/recovery-password/{{token}}" method="post">
         <input type="text" value="{{tokenStatus.name}}" hidden/>
-        <input type="password" placeholder="Escriba una nueva contraseña" name="password"
+        <input class="input-form" type="password" placeholder="Escriba una nueva contraseña" name="password"
         autofocus/>
         {{#errBelowInput arrWarnings "password"}}
         {{msg}}
         {{/errBelowInput}}
-        <div id="passwordHelpBlock">
-            Ingrese una nueva contraseña de al menos 7 caracteres.
-        </div>
-        <input type="password" placeholder="Repita su nueva contraseña" name="passwordConfirmation"/>
+        
+        <input class="input-form" type="password" placeholder="Repita su nueva contraseña" name="passwordConfirmation"/>
         {{#errBelowInput arrWarnings "passwordConfirmation"}}
         {{msg}}
         {{/errBelowInput}}
-        <div id="passwordHelpBlock">
-            Repita su nueva contraseña.
+       
+        <div class="button-container">
+        <input class="input-button" type="submit" value="Confirmar">
         </div>
-        <input type="submit" value="Confirmar cambio de contraseña">
         
         </form>
     </div>

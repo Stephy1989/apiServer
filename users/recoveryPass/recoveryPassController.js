@@ -16,7 +16,7 @@ const mailRecoveryPass = async (req, res, next) =>{
             name: user[0].name,
             email: user[0].email
         };
-        const token = await createToken(userForToken, "15m");
+        const token = await createToken(userForToken, "5h");
         const link = `${process.env.public_url}/api/user/recovery-password/${token}`
         
         const mailDetails = {
